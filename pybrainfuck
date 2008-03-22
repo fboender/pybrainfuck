@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+#
+# Copyright (c) 2008 Ferry Boender
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+import optparse
+import sys
+import brainfuck
+
+parser = optparse.OptionParser()
+parser.set_usage(sys.argv[0] + " [option] PROGRAM.bf")
+	
+parser.add_option("-m", "--memory", dest="memory", action="store", default=30000, type="int", metavar="BYTES", help="Number of bytes of memory.")
+parser.add_option("-i", "--instructions", dest="instructions", action="store", default=1000000, type="int", metavar="NUMBER", help="Number of max instructions to run.")
+parser.add_option("-d", "--debug", dest="debug", action="store_true", default=False, help="Show debugging information.")
+
+(options, args) = parser.parse_args()
+
+if not len(args) == 1:
+	print parser.format_help()
+	sys.exit(-1)
+
+f = file(args[0], 'r')
+contents = f.read()
+f.close()
+
+bf = brainfuck.Brainfuck(contents, output=sys.stdout)
+bf.run(options.memory, options.instructions, options.debug)
+
