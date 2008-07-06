@@ -15,7 +15,9 @@ import cStringIO
 import time
 
 class BrainfuckError(Exception):
-	pass
+	def __init__(self, message, errnr):
+		self.errnr = errnr
+		Exception.__init__(self, message)
 
 class Brainfuck(object):
 	"""
@@ -57,7 +59,7 @@ class Brainfuck(object):
 
 		# Syntax checking :-D
 		if code.count('[') != code.count(']'):
-			raise BrainfuckError('Unmatched number of brackets')
+			raise BrainfuckError('Unmatched number of brackets', 1)
 
 		# Remove non-brainfuck operators so the interpreter doesn't have to
 		# process them.
@@ -77,7 +79,7 @@ class Brainfuck(object):
 			if instr == '[':
 				# Scan for matching bracket forwards
 				heap = 0
-				for ip in range(d_ip+1, self.c_len+1):
+				for ip in range(d_ip+1, self.c_len):
 					if code[ip] == '[':
 						heap += 1
 					elif code[ip] == ']':
@@ -86,6 +88,8 @@ class Brainfuck(object):
 							break
 						else:
 							heap -= 1
+				if not d_ip in self.jumps:
+					raise BrainfuckError('Unmatched bracket at pos %i' % (d_ip), 4)
 			elif instr == ']':
 				# Scan for matching bracket backwards
 				heap = 0
@@ -98,6 +102,8 @@ class Brainfuck(object):
 							break
 						else:
 							heap -= 1
+				if not d_ip in self.jumps:
+					raise BrainfuckError('Unmatched bracket at pos %i' % (d_ip), 4)
 			d_ip += 1
 
 		self.code = code
@@ -126,7 +132,7 @@ class Brainfuck(object):
 
 		while ip < c_len:
 			if icnt > max_instr:
-				raise BrainfuckError('Maximum nr of instructions exceeded')
+				raise BrainfuckError('Maximum nr of instructions exceeded', 2)
 
 			instr = code[ip]
 
@@ -149,7 +155,7 @@ class Brainfuck(object):
 				if mem[dp] != 0:
 					ip = jumps[ip]
 			elif instr == '.':
-				buf_out += chr(mem[dp])
+				buf_out += chr(mem[dp] % 256)
 			elif instr == ',':
 				try:
 					mem[dp] = ord(input.read(1))

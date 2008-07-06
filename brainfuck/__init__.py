@@ -1,1 +1,1 @@
-from brainfuck import Brainfuck
+from brainfuck import Brainfuck, BrainfuckError
