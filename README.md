@@ -20,6 +20,16 @@ PyBrainfuck can be used both as a stand-alone Brainfuck interpreter or as a
 python library. It can read from standard input or from a string (in library
 mode) and write to standard out or to a string buffer (in library mode).
 
+Features
+--------
+
+*    Speed optimized
+*    User-definable memory limit
+*    Infinite loop protection
+*    Debugger
+*    Stand-alone use or use as library
+*    Brainfuck programs can read from STDIN or string buffer
+*    Brainfuck programs can write to STDOUT or string buffer
 
 Installation
 ------------
@@ -80,10 +90,25 @@ Library mode:
         print out # 3
 
 
-License
--------
+Copyright
+---------
 
-PyBrainfuck is copyright 2008, Ferry Boender.
+pyBrainfuck is Copyright by Ferry Boender, 2008-2013 - Released under the MIT License
 
-PyBrainfuck is released under the MIT License. For more information, see the
-LICENSE file provided with this program.
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
