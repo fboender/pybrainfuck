@@ -34,50 +34,50 @@ Usage
 
 Standalone mode: 
 
-	Usage: ./pybrainfuck [option] PROGRAM.bf
-
-	Options:
-	  -h, --help            show this help message and exit
-	  -m BYTES, --memory=BYTES
-							Number of bytes of memory.
-	  -i NUMBER, --instructions=NUMBER
-							Number of max instructions to run.
-	  -d, --debug           Show debugging information.
-
-	Example:
-
-		$ ./pybrainfuck tests/helloworld.bf 
-		Hello World!
-
-		$ ./pybrainfuck tests/divide.bf 
-		62<ENTER>
-		3
-
-		$ echo "ROT13 me please." | ./pybrainfuck tests/rot13.bf
-		EBG13 zr cyrnfr.
+>    Usage: ./pybrainfuck [option] PROGRAM.bf
+>
+>    Options:
+>      -h, --help            show this help message and exit
+>      -m BYTES, --memory=BYTES
+>                            Number of bytes of memory.
+>      -i NUMBER, --instructions=NUMBER
+>                            Number of max instructions to run.
+>      -d, --debug           Show debugging information.
+>
+>    Example:
+>
+>        $ ./pybrainfuck tests/helloworld.bf 
+>        Hello World!
+>
+>        $ ./pybrainfuck tests/divide.bf 
+>        62<ENTER>
+>        3
+>
+>        $ echo "ROT13 me please." | ./pybrainfuck tests/rot13.bf
+>        EBG13 zr cyrnfr.
 
 Library mode:
 
-	Hello World:
-		#!/usr/bin/python
-
-		import brainfuck
-
-		code = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>."
-		bf = brainfuck.Brainfuck(code)
-		out = bf.run() 
-		print out # Hello, World!
-
-
-	Divide:
-		#!/usr/bin/python
-
-		import brainfuck
-		
-		code = ",>,>++++++[-<--------<-------->>]<<[>[->+>+<<]>[-<<-[>]>>>[<[>>>-<<<[-]]>>]<<]>>>+<<[-<<+>>]<<<]>[-]>>>>[-<<<<<+>>>>>]<<<<++++++[-<++++++++>]<."
-		bf = brainfuck.Brainfuck(code, '62')
-		out = bf.run()
-		print out # 3
+>    Hello World:
+>        #!/usr/bin/python
+>
+>        import brainfuck
+>
+>        code = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>."
+>        bf = brainfuck.Brainfuck(code)
+>        out = bf.run() 
+>        print out # Hello, World!
+>
+>
+>    Divide:
+>        #!/usr/bin/python
+>
+>        import brainfuck
+>        
+>        code = ",>,>++++++[-<--------<-------->>]<<[>[->+>+<<]>[-<<-[>]>>>[<[>>>-<<<[-]]>>]<<]>>>+<<[-<<+>>]<<<]>[-]>>>>[-<<<<<+>>>>>]<<<<++++++[-<++++++++>]<."
+>        bf = brainfuck.Brainfuck(code, '62')
+>        out = bf.run()
+>        print out # 3
 
 
 License
